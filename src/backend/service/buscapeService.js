@@ -13,7 +13,7 @@ async function getWebScrapBuscape(url) {
     const products = [];
     $('[data-testid="product-card"]').each((i, el) => {
       const title = $(el).find('[data-testid="product-card::name"]').text().trim();
-      const price = $(el).find('[data-testid="product-card::price"]').text().trim()
+      const price = $(el).find('[data-testid="product-card::price"]').text().trim();
       let image = $(el).find('div[data-testid="product-card::image"]').children().eq(0).find('noscript').html()
       if (typeof image !== 'object') {
           image = image.split(' ').filter((e) => e.startsWith('src')).join('').slice(5, -1);

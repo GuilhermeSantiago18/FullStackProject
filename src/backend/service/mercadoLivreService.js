@@ -11,7 +11,7 @@ const getWebScrapMeli = async (url) => {
     const products = [];
     $("li.ui-search-layout__item").each((i, el) => {
       const title = $(el).find("h2.ui-search-item__title").text().trim();
-      const price = 'R$ ' + $(el).find("span.price-tag-amount").text().trim().split("R$").at(2);
+      const price = 'R$ ' + $(el).find("span.price-tag-amount").children().eq(1).text()
       const image = $(el).find("img.ui-search-result-image__element").attr("data-src");
       const link = $(el).find("a.ui-search-link").attr("href");
       const category = {};
