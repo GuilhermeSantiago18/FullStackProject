@@ -11,6 +11,7 @@ const productSchema = new Schema({
     price: String,
     image: String,
     link: String,
+    market: String,
   }],
 });
 

@@ -14,7 +14,8 @@ const getWebScrapMeli = async (url) => {
       price.split('R$').length === 4 ? price = price.split('R$').at(2) : price = price.split('R$').at(1);
       const image = $(el).find("img.ui-search-result-image__element").attr("data-src");
       const link = $(el).find("a.ui-search-link").attr("href");
-      products.push({ title, price, image, link });
+      const market = 'Mercado Livre'
+      products.push({ title, price, image, link, market });
     });
     return products;
   } catch (error) {
@@ -30,6 +31,7 @@ async function getWebScrapBuscape(url) {
     $('[data-testid="product-card"]').each((i, el) => {
       const title = $(el).find('[data-testid="product-card::name"]').text().trim();
       const price = $(el).find('[data-testid="product-card::price"]').text().trim();
+      const market = 'Buscapé'
       let image = $(el).find('div[data-testid="product-card::image"]').children().eq(0).find("noscript").html();
       if (typeof image !== "object") {
         image = image.split(" ").filter((e) => e.startsWith("src")).join("").slice(5, -1);
@@ -41,7 +43,7 @@ async function getWebScrapBuscape(url) {
         const link = "https://buscape.com.br" + requireLink;
         products.push({ title, price, image, link });
       } else {
-        products.push({ title, price, image, requireLink });
+        products.push({ title, price, image, requireLink, market });
       }
     });
     return products;
