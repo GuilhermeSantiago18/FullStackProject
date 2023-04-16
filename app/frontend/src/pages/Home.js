@@ -10,8 +10,7 @@ import {
   Grid,
   Stack,
   Container,
-  CircularProgress,
-  Typography,
+  CircularProgress
 } from "@mui/material";
 
 function Home() {
