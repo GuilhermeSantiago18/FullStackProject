@@ -1,12 +1,13 @@
 const app = require('./app')
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 
 
 
-const uri = 'mongodb://localhost:27017/myapp';
-mongoose.connect(uri)
+const URI = process.env.MONGO_URL;
+mongoose.connect(URI)
   .then(() => app.listen(PORT, console.log("Server running on port " + PORT)))
   .catch((error) => console.error(error));
   
