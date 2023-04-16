@@ -89,7 +89,7 @@ function Home() {
       </Stack>
       {isLoading ? (
         <Grid container p={2} justifyContent="center" alignItems="center">
-          <CircularProgress />
+          <CircularProgress color="success" />
         </Grid>
       ) : products.length === 0 && statusSearch ? (
         <Grid
