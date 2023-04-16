@@ -65,7 +65,7 @@ function Home() {
         </FormControl>
         <FormControl sx={{ width: "100%" }}>
           <Select value={selectedProduct} onChange={handleChangeProduct}>
-            <MenuItem value="tv">TV</MenuItem>
+            <MenuItem value="televisao">TV</MenuItem>
             <MenuItem value="geladeira">Geladeira</MenuItem>
             <MenuItem value="celular">Celular</MenuItem>
           </Select>
