@@ -11,6 +11,7 @@ import {
   Stack,
   Container,
   CircularProgress,
+  Typography,
 } from "@mui/material";
 
 function Home() {
