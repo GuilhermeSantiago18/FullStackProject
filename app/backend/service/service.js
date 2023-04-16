@@ -1,13 +1,13 @@
 const webScrap = require('./webScrapService')
 const productModel = require('../model/productModel')
 
-const searchAllProducts = async (company, product, search) => {
+const searchProducts = async (company, product, search) => {
   const verifyDB = await productModel.findOne({searchInput: search, searchCompany: company, searchProducts: product}).exec();
   if (verifyDB) {
   return verifyDB.searchResult;
   }
-  const urlMeli = `https://lista.mercadolivre.com.br/${product}/${search}`;
-  const urlBuscape = `https://www.buscape.com.br/${product}/${search}`;
+  const urlMeli = search ? `https://lista.mercadolivre.com.br/${product}-${search}` : `https://lista.mercadolivre.com.br/${product}#D[A${product}]`
+  const urlBuscape = `https://www.buscape.com.br/${product}`;
   let result;
   switch (company) {
   case "all":
@@ -22,11 +22,12 @@ const searchAllProducts = async (company, product, search) => {
   result = await webScrap.getWebScrapBuscape(urlBuscape);
   break;
   }
-
+  const regex = new RegExp(search, "i")
+  result = result.filter((product) => regex.test(product.title))
   productModel.create({searchInput: search, searchCompany: company, searchProducts: product, searchResult: result});
   return result;
   };
 
 module.exports = {
-  searchAllProducts,
+  searchProducts,
 }
