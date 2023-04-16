@@ -19,6 +19,7 @@ function Home() {
   const [input, setInput] = useState("");
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [statusSearch, setStatusSearch] = useState(false);
 
   const handleChange = ({ target }) => {
     setSelectedCompany(target.value);
@@ -42,6 +43,7 @@ function Home() {
     const { data } = await requestProductsURL(dataset);
 
     setProducts(data);
+    setStatusSearch(true)
     setIsLoading(false);
   };
 
@@ -89,9 +91,19 @@ function Home() {
         <Grid container p={2} justifyContent="center" alignItems="center">
           <CircularProgress />
         </Grid>
-      ) : (
+      ) : products.length === 0 && statusSearch ? (
         <Grid
           container
+          p={2}
+          justifyContent="center"
+          alignItems="center"
+          sx={{ color: "white" }}
+        >
+          <p>Não há produtos disponíveis para esta pesquisa.</p>
+        </Grid>
+      ) : (
+        <Grid
+          container 
           p={2}
           rowGap={1}
           justifyContent="center"
