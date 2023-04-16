@@ -1,33 +1,44 @@
-const webScrap = require('./webScrapService')
-const productModel = require('../model/productModel')
+const webScrap = require("./webScrapService");
+const productModel = require("../model/productModel");
 
 const searchProducts = async (company, product, search) => {
-  const verifyDB = await productModel.findOne({searchInput: search, searchCompany: company, searchProducts: product}).exec();
+  const verifyDB = await productModel
+    .findOne({
+      searchInput: search,
+      searchCompany: company,
+      searchProducts: product,
+    })
+    .exec();
   if (verifyDB) {
-  return verifyDB.searchResult;
+    return verifyDB.searchResult;
   }
-  const urlMeli = search ? `https://lista.mercadolivre.com.br/${product}-${search}` : `https://lista.mercadolivre.com.br/${product}#D[A${product}]`
-  const urlBuscape = `https://www.buscape.com.br/${product}`;
+  const urlMeli = search
+    ? `https://lista.mercadolivre.com.br/${product}-${search}`
+    : `https://lista.mercadolivre.com.br/${product}#D[A${product}]`;
+  const urlBuscape = `https://www.buscape.com.br/${product}/${search}`;
   let result;
   switch (company) {
-  case "all":
-  const productsMeli = await webScrap.getWebScrapMeli(urlMeli);
-  const productsBuscape = await webScrap.getWebScrapBuscape(urlBuscape);
-  result = [...productsMeli, ...productsBuscape];
-  break;
-  case "meli":
-  result = await webScrap.getWebScrapMeli(urlMeli);
-  break;
-  case "buscape":
-  result = await webScrap.getWebScrapBuscape(urlBuscape);
-  break;
+    case "all":
+      const productsMeli = await webScrap.getWebScrapMeli(urlMeli);
+      const productsBuscape = await webScrap.getWebScrapBuscape(urlBuscape);
+      result = [...productsMeli, ...productsBuscape];
+      break;
+    case "meli":
+      result = await webScrap.getWebScrapMeli(urlMeli);
+      break;
+    case "buscape":
+      result = await webScrap.getWebScrapBuscape(urlBuscape);
+      break;
   }
-  const regex = new RegExp(search, "i")
-  result = result.filter((product) => regex.test(product.title))
-  productModel.create({searchInput: search, searchCompany: company, searchProducts: product, searchResult: result});
+  productModel.create({
+    searchInput: search,
+    searchCompany: company,
+    searchProducts: product,
+    searchResult: result,
+  });
   return result;
-  };
+};
 
 module.exports = {
   searchProducts,
-}
+};

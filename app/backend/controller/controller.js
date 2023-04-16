@@ -2,8 +2,10 @@ const searchService = require("../service/service");
 
 const searchProducts = async (req, res) => {
   const { company, product, search } = req.body;
+   const newSearch = search.replace(" ", '-')
+   console.log(newSearch)
   try {
-    const resultProducts = await searchService.searchProducts(company, product,search);
+    const resultProducts = await searchService.searchProducts(company, product,newSearch);
     return res.status(201).json(resultProducts);
   } catch (error) {
     console.error(error);

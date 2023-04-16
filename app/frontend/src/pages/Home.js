@@ -38,7 +38,7 @@ function Home() {
     const dataset = {
       company: selectedCompany,
       product: selectedProduct,
-      search: input.replace(' ', '-'),
+      search: input,
     };
     const { data } = await requestProductsURL(dataset);
 
