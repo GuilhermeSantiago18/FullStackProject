@@ -23,14 +23,14 @@ const getWebScrapMeli = async (url) => {
   }
 };
 
-async function getWebScrapBuscape(url) {
+const getWebScrapBuscape = async (url) => {
   try {
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
     const products = [];
     $('[data-testid="product-card"]').each((i, el) => {
       const title = $(el).find('[data-testid="product-card::name"]').text().trim();
-      const price = $(el).find('[data-testid="product-card::price"]').text().trim();
+      const price = $(el).find('[data-testid="product-card::price"]').text().trim().slice(2)
       const market = 'Buscapé'
       let image = $(el).find('div[data-testid="product-card::image"]').children().eq(0).find("noscript").html();
       if (typeof image !== "object") {
@@ -41,7 +41,7 @@ async function getWebScrapBuscape(url) {
       const requireLink = $(el).find(".SearchCard_ProductCard_Inner__7JhKb").attr("href");
       if (requireLink.startsWith("/")) {
         const link = "https://buscape.com.br" + requireLink;
-        products.push({ title, price, image, link });
+        products.push({ title, price, image, link, market });
       } else {
         products.push({ title, price, image, requireLink, market });
       }
