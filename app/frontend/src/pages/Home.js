@@ -60,7 +60,7 @@ function Home() {
           <Select value={selectedCompany} onChange={handleChange}>
             <MenuItem value="all">Todas</MenuItem>
             <MenuItem value="buscape">Buscape</MenuItem>
-            <MenuItem value="meli">Meli</MenuItem>
+            <MenuItem value="meli">Mercado Livre</MenuItem>
           </Select>
         </FormControl>
         <FormControl sx={{ width: "100%" }}>
