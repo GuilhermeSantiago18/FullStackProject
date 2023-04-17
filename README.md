@@ -1,4 +1,4 @@
-# Boas-vindas ao challenge da Lexart Labs.
+# Boas-vindas ao desafio da Lexart Labs.
 
 Este é um projeto desenvolvido para realizar web scraping de produtos nos sites Mercado Livre e Buscapé. O projeto permite que o usuário faça pesquisas com filtros e categorias específicas para encontrar produtos de acordo com suas necessidades.
 
