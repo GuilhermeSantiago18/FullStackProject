@@ -53,13 +53,14 @@ MongoDB instalado e rodando localmente ou em um servidor remoto
 
 1. Clone o repositório em sua máquina
 2. Abra o terminal e acesse a pasta do projeto
-3. Instale as dependências do backend com o comando npm install
+3. Acesse a pasta app/backend e instale as dependências do frontend com o comando npm install
+4. Ainda na pasta app/backend execute o comando npm run dev 
 4. Acesse a pasta app/frontend e instale as dependências do frontend com o comando npm install
 5. Ainda na pasta app/frontend execute o comando npm start 
-6. Em outro terminal, acesse a pasta app/backend e inicie com o comando npm run dev
+6. Abra o seu navegador da web e vá para http://localhost:3000.
 
 <details>
-<summary><strong>Utilização</strong></summary>
+<summary><strong>Utilizando</strong></summary>
 Ao acessar o frontend, o usuário irá se deparar com uma página de busca, onde poderá digitar o nome do produto que deseja pesquisar. Ao clicar em "Pesquisar", o frontend irá enviar uma requisição para o backend, que irá buscar as informações sobre o produto no Mercado Livre e no Buscapé.
 
 Os resultados da busca serão exibidos ao usuário em uma lista, contendo informações como o nome do produto, preço e imagem. O usuário poderá clicar em um dos itens da lista e será redirecionado para o mercado real escolhido e conseguirá ver mais informações sobre o produto ou comprá-lo.
