@@ -53,7 +53,7 @@ MongoDB instalado e rodando localmente ou em um servidor remoto
 
 1. Clone o repositório em sua máquina
 2. Abra o terminal e acesse a pasta do projeto
-3. Acesse a pasta app/backend e instale as dependências do frontend com o comando npm install
+3. Acesse a pasta app/backend e instale as dependências do backend com o comando npm install
 4. Ainda na pasta app/backend execute o comando npm run dev 
 4. Acesse a pasta app/frontend e instale as dependências do frontend com o comando npm install
 5. Ainda na pasta app/frontend execute o comando npm start 
